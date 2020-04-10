@@ -1,0 +1,43 @@
+version: '2.4'
+
+services:
+
+  db-nest:
+    container_name: maria-db
+    image: mariadb:10.3.0
+    environment:
+      - "MYSQL_DATABASE=nest"
+      - "MYSQL_USER=nestuser"
+      - "MYSQL_PASSWORD=nestpwd"
+      - "MYSQL_ROOT_PASSWORD=root"
+      - "MYSQL_RANDOM_ROOT_PASSWORD=random"
+      - "MYSQL_ALLOW_EMPTY_PASSWORD=true"
+    volumes:
+      - type: volume
+        source: nestvolume
+        target: /var/lib/mysql
+    ports:
+      - "3333:3306"
+
+  rabbit1:
+    image: rabbitmq:3-management
+    hostname: rabbit1
+    environment:
+      - ERLANG_COOKIE=abcdefg
+      - RABBITMQ_DEFAULT_USER=test
+      - RABBITMQ_DEFAULT_PASS=test 
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  eventstore:
+    image: eventstore/eventstore
+    ports:
+      - 2113:2113
+      - 1113:1113
+    environment:
+      - EVENTSTORE_RUN_PROJECTIONS=All
+      - EVENTSTORE_START_STANDARD_PROJECTIONS=true
+
+volumes:
+  nestvolume:
