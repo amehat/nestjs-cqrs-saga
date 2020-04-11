@@ -28,7 +28,7 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-Simple Nestjs application implementing CQRS principles around a product.
+Simple Nestjs application implementing CQRS principles with SAGA around a product.
 
 ## Installation
 
