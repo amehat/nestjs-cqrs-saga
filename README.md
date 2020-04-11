@@ -30,6 +30,8 @@
 
 Simple Nestjs application implementing CQRS principles with SAGA around a product.
 
+The saga adds the product to the catalog (it's just an example ;) )
+
 ## Installation
 
 ```bash
